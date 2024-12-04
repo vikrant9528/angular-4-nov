@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "id": "c9d7",
+      "name": "ghegh",
+      "email": "dgf@gmail.com",
+      "number": 323,
+      "package": 5,
+      "courses": "angular"
+    },
+    {
+      "id": "2022",
+      "name": "ghegh",
+      "email": "dgf@gmail.com",
+      "number": 323,
+      "package": 5,
+      "courses": "angular"
+    },
+    {
+      "id": "f12c",
+      "name": "ghegh",
+      "email": "dgf@gmail.com",
+      "number": 323,
+      "package": 5,
+      "courses": "angular"
+    },
+    {
+      "id": "3ec2",
+      "name": "ghegh",
+      "email": "dgf@gmail.com",
+      "number": 323,
+      "package": 5,
+      "courses": "angular"
+    },
+    {
+      "id": "a0b6",
+      "name": "yery",
+      "email": "gdf@gmail.com",
+      "number": 1234567,
+      "package": 12,
+      "courses": "angular"
+    }
+  ]
+}
