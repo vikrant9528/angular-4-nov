@@ -1,0 +1,35 @@
+<div>
+    <h1>User Details</h1>
+    <form [formGroup]="myform" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="name" class="form-control"  placeholder="enter name" formControlName="name">
+        <span *ngIf="!myform.get('name').value && myform.get('name').touched">please enter name</span>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Email address</label>
+        <input type="email" class="form-control" placeholder="name@example.com" formControlName="email">
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Mobile Number</label>
+        <input type="number" class="form-control"  placeholder="ex 123" formControlName="number">
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">package</label>
+        <input type="number" class="form-control"  placeholder="ex 123" formControlName="package">
+      </div>
+      <div class="mb-3">
+        <label>Select Course</label>
+        <select class="form-select" aria-label="Default select example" formControlName="courses">
+          <option value="react" selected>react</option>
+          <option value="angular">angular</option>
+          <option value="vue">vue</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-warning" routerLink="/showdata">submit</button>
+        
+      </div>
+    </form>
+    <button routerLink="/showdata" type="showdata" class="btn btn-info ">Show Data</button>
+  </div>
