@@ -1,5 +1,5 @@
-<div>
-    <form [formGroup]="myform" (ngSubmit)="onSubmit()">
+<!-- <div>
+    <form [formGroup]="editform" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label class="form-label">Name</label>
         <input type="name" class="form-control"  placeholder="enter name" formControlName="name">
@@ -30,6 +30,71 @@
       </div>
     </form>
     <button routerLink="/showdata" type="showdata" class="btn btn-info ">Show Data</button>
+  </div> -->
+
+  <div>
+    <h1>Edit User Details</h1>
+    <form [formGroup]="editform" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="name" class="form-control"  placeholder="enter name" formControlName="name"  [ngClass]="{
+          'is-invalid': editform.get('name').invalid && editform.get('name').touched,
+          'is-valid': editform.get('name').valid && editform.get('name').touched
+        }">
+        <!-- <span *ngIf="!editform.get('name').value && editform.get('name').touched">please enter name</span> -->
+      <span *ngIf="editform.get('name').invalid && editform.get('name').touched" class="text-danger">
+        Please enter a valid name
+      </span>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Email address</label>
+        <input type="email" class="form-control" placeholder="name@example.com" formControlName="email"  [ngClass]="{
+          'is-invalid': editform.get('email').invalid && editform.get('email').touched,
+          'is-valid': editform.get('email').valid && editform.get('email').touched
+        }">
+        <span *ngIf="editform.get('email').invalid && editform.get('email').touched" class="text-danger">
+          Please enter valid email
+        </span>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">Mobile Number</label>
+        <input type="number" class="form-control"  placeholder="ex 123" formControlName="number" [ngClass]="{
+          'is-invalid': editform.get('number').invalid && editform.get('number').touched,
+          'is-valid': editform.get('number').valid && editform.get('number').touched
+        }">
+         <span *ngIf="editform.get('number').invalid && editform.get('number').touched" class="text-danger">
+          Please enter valid mobile number
+        </span>
+      </div>
+      <div class="mb-3">
+        <label  class="form-label">package</label>
+        <input type="number" class="form-control"  placeholder="ex 123" formControlName="package"  [ngClass]="{
+          'is-invalid': editform.get('package').invalid && editform.get('package').touched,
+          'is-valid': editform.get('package').valid && editform.get('package').touched
+        }">
+        <span *ngIf="editform.get('package').invalid && editform.get('package').touched" class="text-danger">
+          enter valid email
+        </span>
+      </div>
+      <div class="mb-3">
+        <label>Select Course</label>
+        <select class="form-select" aria-label="Default select example" formControlName="courses"  [ngClass]="{
+          'is-invalid': editform.get('courses').invalid && editform.get('courses').touched,
+          'is-valid': editform.get('courses').valid && editform.get('courses').touched
+        }" >
+          <option value="react" selected>react</option>
+          <option value="angular">angular</option>
+          <option value="vue">vue</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-warning"   [disabled]="editform.invalid">submit</button>  
+      </div>
+    </form>
+    <button routerLink="/showdata" type="button" class="btn btn-info ms-3" >Show Data</button>
   </div>
+
   <router-outlet></router-outlet>
+
+  <!-- routerLink="/showdata" -->
   

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserserviceService } from '../services/userservice.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-showdata',
@@ -9,7 +10,7 @@ import {UserserviceService } from '../services/userservice.service'
 export class ShowdataComponent implements OnInit {
   data:any[] = [];
 
-  constructor(private _user:UserserviceService) { }
+  constructor(private _user:UserserviceService,private route:Router) { }
 
   ngOnInit(): void {
     this.getdata();
@@ -18,6 +19,14 @@ export class ShowdataComponent implements OnInit {
   getdata(){
     this._user.getuser().subscribe(res=>{
       this.data = res;
+      console.log(this.data,'data in edit component')
+    })
+  }
+  edit(id:number){
+    this.route.navigate(['/edit'], {
+      queryParams: {
+        id: id
+      },
     })
   }
 

@@ -3,33 +3,62 @@
     <form [formGroup]="myform" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label class="form-label">Name</label>
-        <input type="name" class="form-control"  placeholder="enter name" formControlName="name">
-        <span *ngIf="!myform.get('name').value && myform.get('name').touched">please enter name</span>
+        <input type="name" class="form-control"  placeholder="enter name" formControlName="name"  [ngClass]="{
+          'is-invalid': myform.get('name').invalid && myform.get('name').touched,
+          'is-valid': myform.get('name').valid && myform.get('name').touched
+        }">
+        <!-- <span *ngIf="!myform.get('name').value && myform.get('name').touched">please enter name</span> -->
+      <span *ngIf="myform.get('name').invalid && myform.get('name').touched" class="text-danger">
+        Please enter a valid name
+      </span>
       </div>
       <div class="mb-3">
         <label  class="form-label">Email address</label>
-        <input type="email" class="form-control" placeholder="name@example.com" formControlName="email">
+        <input type="email" class="form-control" placeholder="name@example.com" formControlName="email"  [ngClass]="{
+          'is-invalid': myform.get('email').invalid && myform.get('email').touched,
+          'is-valid': myform.get('email').valid && myform.get('email').touched
+        }">
+        <span *ngIf="myform.get('email').invalid && myform.get('email').touched" class="text-danger">
+          Please enter valid email
+        </span>
       </div>
       <div class="mb-3">
         <label  class="form-label">Mobile Number</label>
-        <input type="number" class="form-control"  placeholder="ex 123" formControlName="number">
+        <input type="number" class="form-control"  placeholder="ex 123" formControlName="number" [ngClass]="{
+          'is-invalid': myform.get('number').invalid && myform.get('number').touched,
+          'is-valid': myform.get('number').valid && myform.get('number').touched
+        }">
+         <span *ngIf="myform.get('number').invalid && myform.get('number').touched" class="text-danger">
+          Please enter valid mobile number
+        </span>
       </div>
       <div class="mb-3">
         <label  class="form-label">package</label>
-        <input type="number" class="form-control"  placeholder="ex 123" formControlName="package">
+        <input type="number" class="form-control"  placeholder="ex 123" formControlName="package"  [ngClass]="{
+          'is-invalid': myform.get('package').invalid && myform.get('package').touched,
+          'is-valid': myform.get('package').valid && myform.get('package').touched
+        }">
+        <span *ngIf="myform.get('package').invalid && myform.get('package').touched" class="text-danger">
+          Please enter valid mobile number
+        </span>
       </div>
       <div class="mb-3">
         <label>Select Course</label>
-        <select class="form-select" aria-label="Default select example" formControlName="courses">
+        <select class="form-select" aria-label="Default select example" formControlName="courses"  [ngClass]="{
+          'is-invalid': myform.get('courses').invalid && myform.get('courses').touched,
+          'is-valid': myform.get('courses').valid && myform.get('courses').touched
+        }" >
           <option value="react" selected>react</option>
           <option value="angular">angular</option>
           <option value="vue">vue</option>
+          
         </select>
       </div>
-      <div>
-        <button type="submit" class="btn btn-warning" routerLink="/showdata">submit</button>
-        
+      <div class="form-btn">
+        <button type="submit" class="btn btn-warning" [disabled]="myform.invalid">submit</button>
       </div>
     </form>
-    <button routerLink="/showdata" type="showdata" class="btn btn-info ">Show Data</button>
+    <button routerLink="/showdata" type="button" class="btn btn-info ms-3" >Show Data</button>
   </div>
+  
+  <!-- routerLink="/showdata" -->

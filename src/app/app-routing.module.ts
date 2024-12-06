@@ -7,7 +7,7 @@ import { AboutComponent } from './about/about.component';
 const routes: Routes = [
   {path:'',component:AboutComponent},
   { path: 'showdata', component: ShowdataComponent },
-  { path:'edit/:id',component:EditComponentComponent}
+  { path:'edit',component:EditComponentComponent}
 ];
 
 @NgModule({

@@ -12,54 +12,79 @@ import { NgFor } from '@angular/common';
 export class EditComponentComponent implements OnInit {
 
 
-  myform:FormGroup;
+  editform:FormGroup;
   itemId:any;
   data:any[] = [];
+  formData:any[] = [];
 
 
-  constructor(private _user:UserserviceService,private _route:ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.myform = new FormGroup({
-       name: new FormControl('',Validators.required),
-       email:new FormControl('',Validators.required),
-       number:new FormControl('',Validators.required),
-       package:new FormControl('',Validators.required),
-       courses:new FormControl('',Validators.required),
+  constructor(private _user:UserserviceService,private _route:ActivatedRoute) {
+    this._route.queryParams.subscribe((data: any)=>{
+      console.log(data);
+      this.itemId = data.id;
+      this.getdata(this.itemId);
     })
-    this.itemId = this._route.snapshot.paramMap.get('id');
-    console.log(this.itemId);
-    this.getdata();
   }
 
+  ngOnInit(): void {
+    this.editform = new FormGroup({
+      name: new FormControl('',Validators.required),
+      email:new FormControl('',Validators.compose([Validators.required,Validators.email])),
+      number:new FormControl('',Validators.compose([Validators.required,Validators.pattern('^[0-9]{10}$')])),
+      package:new FormControl('',Validators.required),
+      courses:new FormControl('',Validators.required),
+    })
+   
+    console.log(this.itemId);
+    
+  }
+//   getdata(){
+//   this._user.getuser().subscribe(res=>{
+//     this.data=res[this.itemId];
+//     console.log(this.data,'data array');
+//     // this.myform.setValue = this.data[this.itemId]
+//     this.setFormField();
+//   })
+// }
 
-  getdata(){
-  this._user.getuser().subscribe(res=>{
-    this.data=res[this.itemId];
-    console.log(this.data,'data array');
-    // this.myform.setValue = this.data[this.itemId]
-    this.setFormField();
+getdata(id:any){
+  this._user.getuser().subscribe(res => {
+    this.data = res.find(user => user.id === id);
+    console.log(res,'response data');
+    console.log(this.data,'data to be edited');
+    // this.data=res[id];
+    // console.log(this.data, 'data array');
+    if (this.data) {
+      this.setFormField();
+    } else {
+      console.log('No data found for this itemId');
+    }
   })
 }
-
 setFormField(){
   if(this.data){
-    this.myform.patchValue(this.data)
+    this.editform.patchValue(this.data)
   }else{
     console.log('we cant find data');
   }
 }
-
-
   onSubmit(){
-    if(this.myform.valid){
-      console.log(this.myform.value);
-        this._user.editUser(this.itemId,this.myform.value).subscribe(res=>{
-          console.log(res);
-        })
+    if(this.editform.valid){
+      console.log(this.editform.value,'edit form value');
+      this.formData.push(this.editform.value);
+      this.setEditData(this.itemId,this.formData);
     }else{
-      console.log('validation is required');
+      console.log('form in not valid');
     }
+  }
+  setEditData(id:number,data:any){
+      console.log(id,'id of the edit element');
+      console.log(data,'data which is to be edited');
+    this._user.editUser(id,data).subscribe(res=>{
+      console.log(id);
+      console.log(res);
+      alert('data change successfully');
+    })
   }
 
 }

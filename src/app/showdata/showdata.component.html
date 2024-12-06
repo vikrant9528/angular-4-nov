@@ -18,7 +18,7 @@
         <td>{{item.number}}</td>
         <td>{{item.package}}</td>
         <td>{{item.courses}}</td>
-        <td><button class="btn btn-primary" (click)="deleteItem(item.id)">delete</button>  <button class="btn btn-warning ms-2" [routerLink]="['/edit',i]" >edit</button></td>
+        <td><button class="btn btn-primary" (click)="deleteItem(item.id)">delete</button>  <button class="btn btn-warning ms-2" (click)="edit(item.id)" >edit</button></td>
       </tr>
     </tbody>
   </table>

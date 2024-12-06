@@ -1,0 +1,17 @@
+.is-invalid {
+    border-color: red;
+    background-color: #f8d7da;
+  }
+  
+  .is-valid {
+    border-color: green;
+    background-color: #d4edda;
+  }
+  
+  .text-danger {
+    color: red;
+  }
+  .form-btn{
+    display: flex;
+    gap: 5px;
+}

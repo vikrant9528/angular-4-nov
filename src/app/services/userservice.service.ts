@@ -13,7 +13,7 @@ export class UserserviceService {
     return this._http.get('http://localhost:3000/posts');
   }
 
-  addEmployee(data:any):Observable<any>{
+  addUser(data:any):Observable<any>{
     return this._http.post('http://localhost:3000/posts',data)
   }
   deleteUser(id:number):Observable<any>{
